@@ -9,22 +9,38 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
 
-userForm :user;
+  userForm: user;
+  allUser:Array<any> = new Array<any>();
 
-  constructor(private _crud:CrudService) { }
+  constructor(private _crud: CrudService) { }
 
   ngOnInit() {
     this.userForm = new user;
+
+    this.getData();
+  }
+
+  getData() {
+    this._crud.getUser().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.allUser = res as any; 
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   signinUser() {
     // if (this.userForm.name == "") {
-      this._crud.postEmployee(this.userForm).subscribe((res) => {
-        console.log('data added');
-        this.userForm = new user;
-        // this.refreshEmployeeList();
-        // M.toast({ html: 'Saved successfully', classes: 'rounded' });
-      });
+    this._crud.addUser(this.userForm).subscribe((res) => {
+      console.log('data added');
+      this.getData();
+      this.userForm = new user;
+      // this.refreshEmployeeList();
+      // M.toast({ html: 'Saved successfully', classes: 'rounded' });
+    });
     // }
     // else {
     //   this._crud.putEmployee(form.value).subscribe((res) => {

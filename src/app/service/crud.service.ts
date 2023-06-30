@@ -13,12 +13,12 @@ export class CrudService {
 
   constructor(private http: HttpClient) { }
 
-  postEmployee(emp:user) {
-    return this.http.post<user>(this.baseURL+'/post/', emp);
+  addUser(user:user) {
+    return this.http.post<user>(this.baseURL+'/add', user);
   }
 
-  getEmployeeList() {
-    return this.http.get(this.baseURL);
+  getUser() {
+    return this.http.get<user>(this.baseURL+'/get');
   }
   putEmployee(emp) {
     return this.http.put(this.baseURL + `/${emp._id}`, emp);
@@ -32,6 +32,7 @@ export class CrudService {
 
 
 export class user {
+  id:string;
   name: string;
   password: string;
 }
