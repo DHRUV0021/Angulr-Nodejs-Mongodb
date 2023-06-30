@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+::ng-deep.mat-mdc-text-field-wrapper {
+    width: 173% !important;
+}
+
+.Form {
+    margin-top: 15px;
+}
+
+.addBtn {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    margin: 20px;
+}
