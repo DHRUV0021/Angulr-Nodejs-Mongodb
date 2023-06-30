@@ -16,9 +16,9 @@ const db = require('./db')
 const UserSchema = require('./usershema');
 
 
-const DATABASE_URL = 'mongodb://localhost:27017'
-const DATABASE = 'testing'
-db(DATABASE_URL,DATABASE)
+// const DATABASE_URL = 'mongodb://localhost:27017'
+// const DATABASE = 'testing'
+// db(DATABASE_URL,DATABASE)
 
 // =============Get api data
 app.get("/get", async (req, res) => {
