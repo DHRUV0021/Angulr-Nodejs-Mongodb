@@ -36,5 +36,22 @@ app.post('/add', async (req, res) => {
     res.send(result);
 });
 
+app.put("/edit/:id",async (req, res)=>{
+    let result = await UserSchema.updateOne(
+        { _id: req.params.id },
+        {
+            $set: req.body
+        }
+    )
+    res.send(result);
+});
+
+app.delete("/delete/:id", async (req, res) => {
+    const result = await UserSchema.deleteOne({ _id: req.params.id })
+    res.send(result);
+});
+
+
+
 // ===server port no
 app.listen(port,() => console.log('listening on port '+ port))

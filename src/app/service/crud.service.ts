@@ -8,31 +8,33 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CrudService {
   selectedEmployee: any
-  employees:any[];
-   baseURL = 'http://localhost:5000';
+  employees: any[];
+  baseURL = 'http://localhost:5000';
 
   constructor(private http: HttpClient) { }
 
-  addUser(user:user) {
-    return this.http.post<user>(this.baseURL+'/add', user);
+  addUser(user: user) {
+    return this.http.post<user>(this.baseURL + '/add', user);
   }
 
   getUser() {
-    return this.http.get<user>(this.baseURL+'/get');
-  }
-  putEmployee(emp) {
-    return this.http.put(this.baseURL + `/${emp._id}`, emp);
+    return this.http.get<user>(this.baseURL + '/get');
   }
 
-  deleteEmployee(_id: string) {
-    return this.http.delete(this.baseURL + `/${_id}`);
+  editUser(user) {
+    return this.http.put(this.baseURL + `/edit/${user._id}`, user);
+  }
+
+  deleteUser(id: string) {
+    // return this.http.delete(this.baseURL + `/ ${_id}`);
+    return this.http.delete(this.baseURL + `/delete/${id}`);
   }
 
 }
 
 
 export class user {
-  id:string;
+  _id: string;
   name: string;
   password: string;
 }

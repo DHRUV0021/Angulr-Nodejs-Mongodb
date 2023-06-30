@@ -1,32 +1,56 @@
-
 <div class="container">
   <div class="row ">
     <div class="col-12">
       <mat-card class="example-card">
         <form>
-        <mat-card-header>
-          <mat-card-title>Registration Form</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="Form">
-          <mat-form-field class="example-full-width ">
-            <mat-label>Name</mat-label>
-            <input matInput name="name" [(ngModel)]="userForm.name">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>password</mat-label>
-            <input matInput name="position" [(ngModel)]="userForm.password">
-          </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button mat-raised-button class="addBtn" (click)="signinUser()">Sign in</button>
-        </mat-card-actions>
-      </form>
+          <mat-card-header>
+            <mat-card-title>Registation Form</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="Form">
+            <mat-form-field style="width: 58%;">
+              <mat-label> Enter your Name</mat-label>
+              <input matInput name="name" [(ngModel)]="userForm.name">
+            </mat-form-field>
+
+            <mat-form-field style="width: 58%;">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="position" [(ngModel)]="userForm.password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+          </mat-card-content>
+          <mat-card-actions>
+            <button *ngIf="isUpdate" mat-button mat-raised-button class="addBtn" (click)="addUser()">Add</button>
+            <button *ngIf="!isUpdate" mat-button mat-raised-button class="addBtn" (click)="updateData()">Update</button>
+          </mat-card-actions>
+        </form>
       </mat-card>
     </div>
   </div>
 </div>
 
-<tr *ngFor="let item of allUser">
-  <td>{{item.name}} </td>
-  <td>{{item.password}}</td>
-</tr>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of allUser; let id = index">
+    <tr>
+      <td>{{id+1}} </td>
+      <td>{{item.name}} </td>
+      <td>{{item.password}}</td>
+      <td>
+        <i class="material-icons" style="color: green; cursor: pointer;" (click)="editData(item)">edit</i>
+        <i class="material-icons" style="color: red; cursor: pointer;" (click)="deleteData(item)">delete</i>
+      </td>
+    </tr>
+  </tbody>
+</table>
