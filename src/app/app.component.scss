@@ -9,11 +9,15 @@
 }
 
 ::ng-deep.mat-mdc-text-field-wrapper {
-    width: 173% !important;
+    width: 100% !important;
 }
 
 .Form {
     margin-top: 15px;
+}
+
+.Form mat-form-field {
+    width: 100%;
 }
 
 .addBtn {
@@ -63,3 +67,4 @@
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
+

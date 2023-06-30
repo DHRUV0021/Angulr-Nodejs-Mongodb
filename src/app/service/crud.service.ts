@@ -18,7 +18,7 @@ export class CrudService {
   }
 
   getUser() {
-    return this.http.get<user>(this.baseURL + '/get');
+    return this.http.get<any>(this.baseURL + '/get');
   }
 
   editUser(user) {
@@ -26,7 +26,6 @@ export class CrudService {
   }
 
   deleteUser(id: string) {
-    // return this.http.delete(this.baseURL + `/ ${_id}`);
     return this.http.delete(this.baseURL + `/delete/${id}`);
   }
 

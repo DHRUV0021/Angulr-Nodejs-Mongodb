@@ -24,9 +24,9 @@ export class AppComponent {
 
   getData() {
     this._crud.getUser().subscribe({
-      next: (res) => {
+      next: (res:any) => {
         console.log(res);
-        this.allUser = res as any;
+        this.allUser = res ;
       },
       error: (err) => {
         console.log(err);
